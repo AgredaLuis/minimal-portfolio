@@ -18,16 +18,21 @@ const Testimonial = (props: { name: string, company: string, role: string, quote
 
     useEffect(() => {
         let shouldAnimate = true;
+
         if (isPresent) {
-            quoteEntranceAnimatioon().then(() => {
-                if (shouldAnimate) return citeEntranceAnimatioon();
-            }).then(() => {
-                if (shouldAnimate) return linkEntranceAnimation();
-            });
+            // Ejecutamos la cadena asegurándonos de que existan
+            const startAnim = async () => {
+                await quoteEntranceAnimatioon();
+                if (shouldAnimate) await citeEntranceAnimatioon();
+                if (shouldAnimate) await linkEntranceAnimation();
+            };
+            startAnim();
         } else {
-            Promise.all([citeExitAnimation(),
-            qouteExitAnimation(),
-            linkExitAnimation()
+            // En el exitAnimation es vital que devuelvan promesas para que Promise.all no falle
+            Promise.all([
+                citeExitAnimation() || Promise.resolve(),
+                qouteExitAnimation() || Promise.resolve(),
+                linkExitAnimation() || Promise.resolve()
             ]).then(() => {
                 if (shouldAnimate) safeToRemove();
             });
@@ -36,7 +41,8 @@ const Testimonial = (props: { name: string, company: string, role: string, quote
         return () => {
             shouldAnimate = false;
         }
-    }, [isPresent, quoteEntranceAnimatioon, citeEntranceAnimatioon, qouteExitAnimation, citeExitAnimation, safeToRemove, linkEntranceAnimation, linkExitAnimation]);
+    }, [isPresent, quoteEntranceAnimatioon, citeEntranceAnimatioon, linkEntranceAnimation, qouteExitAnimation, citeExitAnimation, linkExitAnimation, safeToRemove]);
+
     return (<div className={twMerge("grid md:grid-cols-5 md:gap-8 lg:gap-16 md:items-center", className)} {...rest}>
         <div className="aspect-square md:aspect-[9/16] md:col-span-2 relative">
             <motion.div className="absolute h-full bg-stone-900"
@@ -59,7 +65,7 @@ const Testimonial = (props: { name: string, company: string, role: string, quote
                 {quote}
                 <span>&rdquo;</span>
             </div>
-            <div className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl flex items-center gap-2">
+            <div className="mt-4 md:mt-8 not-italic md:text-lg lg:text-xl flex items-center gap-2">
                 <cite className="not-italic" ref={citeScope}>{name}, {role} at {company}</cite>
                 <a href={link} target="_blank" rel="noopener noreferrer" ref={linkScope}>
                     <span className="word">

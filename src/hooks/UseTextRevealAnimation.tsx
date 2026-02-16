@@ -14,14 +14,18 @@ const useTextRevealAnimation = () => {
 
 
     const entranceAnimation = () => {
-        return animate(scope.current.querySelectorAll('.word'), {
+        const words = scope.current?.querySelectorAll('.word');
+
+        // Si no hay palabras, devolvemos una promesa resuelta inmediatamente
+        if (!words || words.length === 0) return Promise.resolve();
+
+        return animate(words, {
             transform: "translateY(0)",
-        },
-            {
-                duration: .5,
-                delay: stagger(0.15),
-            })
-    }
+        }, {
+            duration: 0.5,
+            delay: stagger(0.1),
+        });
+    };
 
     const exitAnimation = () => {
         return animate(scope.current.querySelectorAll('.word'), {
