@@ -10,11 +10,12 @@ import Testimonial from "@/components/Testimonial";
 const testimonials = [
   {
     name: "Daniela Mijares ",
-    company: "Mind Studio",
+    company: "Min Studio",
     role: "Head of Design",
     quote:
       "Luis expertise in both technical development and design created a beautiful, high-performing website.",
     image: image4,
+    link: "https://linktr.ee/mindesignstudi0",
     imagePositionY: 0.1,
   },
   {
@@ -24,6 +25,7 @@ const testimonials = [
     quote:
       "Luis transformed our boutique coffee brand with a website that perfectly balances aesthetics and functionality.",
     image: image2,
+    link: "https://google.com",
     imagePositionY: 0.1,
   },
   {
@@ -33,6 +35,7 @@ const testimonials = [
     quote:
       "The collaborative process was amazing. Alex brought lots of fresh perspectives and innovative solutions.",
     image: image3,
+    link: "https://google.com",
     imagePositionY: 0.55,
   },
 ];
@@ -68,9 +71,9 @@ const Testimonials: FC = () => {
     <div className="container">
       <div className="mt-20">
         <AnimatePresence mode="wait" initial={false}>
-          {testimonials.map(({ name, company, role, quote, image, imagePositionY }, index) =>
+          {testimonials.map(({ name, company, role, quote, image, imagePositionY, link }, index) =>
             index === testimonialIndex && (
-              <Testimonial key={name} name={name} company={company} role={role} quote={quote} image={image} imagePositionY={imagePositionY} />
+              <Testimonial key={name} name={name} company={company} role={role} quote={quote} link={link} image={image} imagePositionY={imagePositionY} />
             ))}
         </AnimatePresence>
       </div>

@@ -1,28 +1,42 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import Image from "next/image"
-import { HTMLAttributes, use, useEffect } from "react"
+import { HTMLAttributes, useEffect } from "react"
 import { twMerge } from "tailwind-merge"
 import { motion, usePresence } from "motion/react"
 import useTextRevealAnimation from "@/hooks/UseTextRevealAnimation"
-const Testimonial = (props: { name: string, company: string, role: string, quote: string, image: string | StaticImport, imagePositionY: number, className?: string } & HTMLAttributes<HTMLDivElement>) => {
+const Testimonial = (props: { name: string, company: string, role: string, quote: string, link: string, image: string | StaticImport, imagePositionY: number, className?: string } & HTMLAttributes<HTMLDivElement>) => {
 
-    const { name, company, role, quote, image, imagePositionY, className, ...rest } = props
+    const { name, company, role, quote, image, imagePositionY, link, className, ...rest } = props
 
     const { scope: qouteScope, entranceAnimation: quoteEntranceAnimatioon, exitAnimation: qouteExitAnimation } = useTextRevealAnimation();
 
     const { scope: citeScope, entranceAnimation: citeEntranceAnimatioon, exitAnimation: citeExitAnimation } = useTextRevealAnimation();
 
+    const { scope: linkScope, entranceAnimation: linkEntranceAnimation, exitAnimation: linkExitAnimation } = useTextRevealAnimation();
+
     const [isPresent, safeToRemove] = usePresence();
 
     useEffect(() => {
+        let shouldAnimate = true;
         if (isPresent) {
-            quoteEntranceAnimatioon().then(() => citeEntranceAnimatioon());
+            quoteEntranceAnimatioon().then(() => {
+                if (shouldAnimate) return citeEntranceAnimatioon();
+            }).then(() => {
+                if (shouldAnimate) return linkEntranceAnimation();
+            });
         } else {
             Promise.all([citeExitAnimation(),
-            qouteExitAnimation()
-            ]).then(() => safeToRemove());
+            qouteExitAnimation(),
+            linkExitAnimation()
+            ]).then(() => {
+                if (shouldAnimate) safeToRemove();
+            });
         }
-    }, [isPresent, quoteEntranceAnimatioon, citeEntranceAnimatioon, qouteExitAnimation, citeExitAnimation, safeToRemove]);
+
+        return () => {
+            shouldAnimate = false;
+        }
+    }, [isPresent, quoteEntranceAnimatioon, citeEntranceAnimatioon, qouteExitAnimation, citeExitAnimation, safeToRemove, linkEntranceAnimation, linkExitAnimation]);
     return (<div className={twMerge("grid md:grid-cols-5 md:gap-8 lg:gap-16 md:items-center", className)} {...rest}>
         <div className="aspect-square md:aspect-[9/16] md:col-span-2 relative">
             <motion.div className="absolute h-full bg-stone-900"
@@ -45,7 +59,16 @@ const Testimonial = (props: { name: string, company: string, role: string, quote
                 {quote}
                 <span>&rdquo;</span>
             </div>
-            <cite className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl" ref={citeScope}>{name}, {role} at {company}</cite>
+            <div className="mt-4 md:mt-8 not-italic block md:text-lg lg:text-xl flex items-center gap-2">
+                <cite className="not-italic" ref={citeScope}>{name}, {role} at {company}</cite>
+                <a href={link} target="_blank" rel="noopener noreferrer" ref={linkScope}>
+                    <span className="word">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
         </blockquote>
 
     </div>

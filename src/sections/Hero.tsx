@@ -5,6 +5,9 @@ import Button from "@/components/Button";
 import heroImage2 from "@/assets/images/hero-image2.jpg";
 import { motion, useScroll, useTransform } from "motion/react";
 import useTextRevealAnimation from "@/hooks/UseTextRevealAnimation";
+
+const MotionImage = motion(Image);
+
 const Hero: FC = () => {
   /* const [titleScope, titleAnimate] = useAnimate(); */
   const scrollingDiv = useRef<HTMLDivElement>(null);
@@ -14,14 +17,17 @@ const Hero: FC = () => {
   })
 
 
-  const portraitWidth = useTransform(scrollYProgress, [0, 1], ['100%', '240%']);
 
-  const { scope, entranceAnimation, exitAnimation } = useTextRevealAnimation();
+  const portraitWidth = useTransform(scrollYProgress, [0, 1], ['100%', '240%']);
+  const imgObjectPosition = useTransform(scrollYProgress, [0, 1], ['50% 50%', '50% 20%']);
+  const imgGrayscale = useTransform(scrollYProgress, [0, 1], ['grayscale(0%)', 'grayscale(100%)']);
+
+  const { scope, entranceAnimation } = useTextRevealAnimation();
 
   useEffect(() => {
     entranceAnimation();
-  }, [])
-  return <section>
+  }, [entranceAnimation]);
+  return <section id="home">
     <div className="grid md:grid-cols-12 md:h-screen items-stretch sticky top-0">
 
 
@@ -73,10 +79,12 @@ const Hero: FC = () => {
         </div>
       </div>
       <div className="md:col-span-5 relative">
-        <motion.div className="mt-20 md:mt-0 md:h-full md:absolute md:right-0 max-md:!w-full" style={{
+        <motion.div className="mt-20 md:mt-0 md:h-full md:absolute md:right-0 max-md:!w-full max-md:!filter-none" style={{
           width: portraitWidth,
+          filter: imgGrayscale,
         }}>
-          <Image src={heroImage2} alt="My portait" className="size-full object-cover" />
+          {/* <Image src={heroImage2} alt="My portait" className="size-full object-cover" /> */}
+          <MotionImage priority placeholder="blur" style={{ objectPosition: imgObjectPosition }} src={heroImage2} alt="My portait" className="size-full object-cover" />
         </motion.div>
       </div>
     </div>

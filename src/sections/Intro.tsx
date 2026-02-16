@@ -10,7 +10,7 @@ const Intro: FC = () => {
 
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  const { scope, entranceAnimation, exitAnimation } = useTextRevealAnimation();
+  const { scope, entranceAnimation } = useTextRevealAnimation();
   const inView = useInView(scope, {
     once: true
   });
