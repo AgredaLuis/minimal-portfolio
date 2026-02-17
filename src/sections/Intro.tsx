@@ -28,7 +28,7 @@ const Intro: FC = () => {
     <section className="section mt-12 md:mt-16" id="intro" ref={sectionRef}>
       <div className="container">
         <h2
-          className="text-4xl md:text-7xl lg:text-8xl lg:w-[80%]"
+          className="text-4xl md:text-7xl lg:text-8xl lg:w-[80%] leading-tight md:leading-tighter lg:leading-[1.1] tracking-tighter"
           ref={scope}
         >
           {t.intro.text}

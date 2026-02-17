@@ -111,7 +111,7 @@ const Hero: FC = () => {
         </div>
       </div>
 
-      <div className="md:h-[200vh]" ref={scrollingDiv}></div>
+      <div className="md:h-[100vh]" ref={scrollingDiv}></div>
     </section>
   );
 };
