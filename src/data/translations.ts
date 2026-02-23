@@ -27,7 +27,7 @@ export const translations = {
           quote: "Luis expertise in both technical development and design created a beautiful, high-performing website.",
         },
         {
-          quote: "Luis transformed our boutique coffee brand with a website that perfectly balances aesthetics and functionality.",
+          quote: "Your testimonial could be here. Let’s make your brand the next success story. Your vision, my code.",
         },
         {
           quote: "The collaborative process was amazing. Luis brought lots of fresh perspectives and innovative solutions.",
@@ -88,7 +88,7 @@ export const translations = {
           quote: "La experiencia de Luis tanto en desarrollo técnico como en diseño dio como resultado un sitio web hermoso y de alto rendimiento.",
         },
         {
-          quote: "Luis transformó nuestra marca de café con un sitio web que equilibra perfectamente la estética y la funcionalidad.",
+          quote: "Tu testimonio podría estar aquí. Hagamos que tu marca sea la próxima historia de éxito. Tu visión, mi código.",
         },
         {
           quote: "El proceso de colaboración fue increíble. Luis aportó muchas perspectivas frescas y soluciones innovadoras.",

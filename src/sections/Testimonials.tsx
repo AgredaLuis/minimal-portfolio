@@ -1,6 +1,6 @@
 "use client";
 import { FC, useRef, useState } from "react";
-import image2 from "@/assets/images/testimonial-2.jpg";
+import image2 from "@/assets/images/unnamed.jpg";
 import image3 from "@/assets/images/testimonial-3.jpg";
 import image4 from "@/assets/images/testimonial-4.jpg";
 import { useScroll, motion, useTransform, AnimatePresence } from "motion/react";
@@ -19,8 +19,8 @@ const testimonialData = [
     imagePositionY: 0.1,
   },
   {
-    name: "Marcus Rodriguez",
-    company: "Craft Coffee Co.",
+    name: "Your Name Here",
+    company: "Your Company",
     role: "Founder",
     image: image2,
     link: "https://google.com",
