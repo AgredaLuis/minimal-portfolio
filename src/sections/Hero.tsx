@@ -2,7 +2,7 @@
 import { FC, useEffect, useRef, MouseEvent } from "react";
 import Image from "next/image";
 import Button from "@/components/Button";
-import heroImage2 from "@/assets/images/hero-image2.jpg";
+import heroImage1 from "@/assets/images/hero-image.jpg";
 import { motion, useScroll, useTransform } from "motion/react";
 import useTextRevealAnimation from "@/hooks/UseTextRevealAnimation";
 import { useLanguage } from "@/context/LanguageContext";
@@ -106,7 +106,7 @@ const Hero: FC = () => {
             className="mt-20 md:mt-0 md:h-full md:absolute md:right-0 max-md:!w-full max-md:!filter-none"
             style={{ width: portraitWidth, filter: imgGrayscale }}
           >
-            <MotionImage priority placeholder="blur" style={{ objectPosition: imgObjectPosition }} src={heroImage2} alt="My portrait" className="size-full object-cover" />
+            <MotionImage priority placeholder="blur" style={{ objectPosition: imgObjectPosition }} src={heroImage1} alt="My portrait" className="size-full object-cover" />
           </motion.div>
         </div>
       </div>
