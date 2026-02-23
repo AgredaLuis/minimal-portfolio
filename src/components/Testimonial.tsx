@@ -67,9 +67,9 @@ const Testimonial = (props: { name: string, company: string, role: string, quote
             </div>
             <div className="mt-4 md:mt-8 not-italic md:text-lg lg:text-xl flex items-center gap-2">
                 <cite className="not-italic" ref={citeScope}>{name}, {role} at {company}</cite>
-                <a href={link} target="_blank" rel="noopener noreferrer" ref={linkScope}>
+                <a href={link} target="_blank" rel="noopener noreferrer" ref={linkScope} aria-label={`Visit ${name}'s profile`}>
                     <span className="word">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
                         </svg>
                     </span>

@@ -177,7 +177,7 @@ const Header: FC = () => {
           <div className="w-full flex gap-4 p-6 justify-center items-center">
             <LanguageSwitcher />
             {socialLinks.map(({ href, label, icon }) => (
-              <a href={href} key={label} target="_blank" rel="noopener noreferrer" className="text-stone-200 hover:text-white hover:scale-110 transition-all duration-300 transform">
+              <a href={href} key={label} target="_blank" rel="noopener noreferrer" aria-label={label} className="text-stone-200 hover:text-white hover:scale-110 transition-all duration-300 transform">
                 {icon}
               </a>
             ))}
