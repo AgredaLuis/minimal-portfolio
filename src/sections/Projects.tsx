@@ -22,12 +22,12 @@ const projects = [
     url: "https://one-way.info/"
   },
   {
-    name: "Saas Landing (Template)",
+    name: "Saas Landing",
     image: image3,
     url: "https://saas-landing-framer.vercel.app/"
   },
   {
-    name: "Pachus Shop (Template)",
+    name: "Pachus Shop",
     image: image4,
     url: "https://pachusshop.vercel.app/"
   },
