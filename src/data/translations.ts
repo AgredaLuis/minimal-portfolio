@@ -1,7 +1,7 @@
 export const translations = {
   en: {
     hero: {
-      title: "Crafting digital experiences through code and creative design",
+      title: "Transforming complex designs into high-performance interfaces",
       buttonPrimary: "View My Work",
       buttonSecondary: "Let's Talk",
     },
@@ -67,7 +67,7 @@ export const translations = {
   },
   es: {
     hero: {
-      title: "Creando experiencias digitales mediante código y diseño creativo",
+      title: "Transformando diseños complejos en interfaces de alto rendimiento",
       buttonPrimary: "Ver mi trabajo",
       buttonSecondary: "Hablemos",
     },
