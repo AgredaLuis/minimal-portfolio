@@ -12,9 +12,39 @@ const archivo = Archivo({
 });
 
 
+const BASE_URL = "https://luisagreda.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Luis Agreda Portfolio",
-  description: "Created with with love by Luis Agreda",
+  metadataBase: new URL(BASE_URL),
+  title: "Luis Agreda | Frontend Developer & Creative Designer",
+  description:
+    "Crafting digital experiences through code and creative design. Building beautiful websites with clean code and thoughtful design.",
+
+  openGraph: {
+    title: "Luis Agreda | Frontend Developer & Creative Designer",
+    description:
+      "Crafting digital experiences through code and creative design. Building beautiful websites with clean code and thoughtful design.",
+    url: BASE_URL,
+    siteName: "Luis Agreda Portfolio",
+    images: [
+      {
+        url: "/images/hero-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Luis Agreda - Frontend Developer & Creative Designer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Luis Agreda | Frontend Developer & Creative Designer",
+    description:
+      "Crafting digital experiences through code and creative design.",
+    images: ["/images/hero-image.jpg"],
+  },
 };
 
 export default function RootLayout({
